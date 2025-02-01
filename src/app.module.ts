@@ -1,27 +1,20 @@
 import { Module } from '@nestjs/common';
-
-import { AgendamentoEntity } from './agendamento/entities/agendamento.entity';
-import { AgendamentoModule } from './agendamento/agendamento.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
+import { UsuarioModule } from './usuario/usuario.module';
+import { AgendamentoModule } from './agendamento/agendamento.module';
+import { ProdService } from './data/services/prod.service';
+import { DevService } from './data/services/data.service';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
+      isGlobal: true, // Configurações do .env disponíveis globalmente
     }),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT || '3306'),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      autoLoadEntities: true,
-      synchronize: true,
-      logging: true,
+    TypeOrmModule.forRootAsync({
+      useClass: DevService, // Usa o serviço de configuração do banco
     }),
+    UsuarioModule,
     AgendamentoModule,
   ],
   controllers: [],

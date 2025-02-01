@@ -1,7 +1,7 @@
-import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { AgendamentoEntity } from "../entities/agendamento.entity";
-import {DeleteResult, Repository} from 'typeorm'
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { AgendamentoEntity } from '../entities/agendamento.entity';
+import { DeleteResult, Repository } from 'typeorm';
 
 @Injectable()
 export class AgendamentoService {
@@ -11,7 +11,11 @@ export class AgendamentoService {
   ) {}
 
   async findAll(): Promise<AgendamentoEntity[]> {
-    return await this.agendamentoRepository.find();
+    return await this.agendamentoRepository.find({
+      relations: {
+        usuario: true
+      }
+    });
   }
 
   async findById(id: number): Promise<AgendamentoEntity> {
@@ -19,6 +23,9 @@ export class AgendamentoService {
       where: {
         id,
       },
+      relations: {
+        usuario: true
+      }
     });
 
     if (!agendamento)
