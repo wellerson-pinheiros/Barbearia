@@ -5,6 +5,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { AgendamentoModule } from './agendamento/agendamento.module';
 import { ProdService } from './data/services/prod.service';
 import { DevService } from './data/services/data.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { DevService } from './data/services/data.service';
     }),
     UsuarioModule,
     AgendamentoModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],
