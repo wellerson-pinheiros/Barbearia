@@ -13,15 +13,14 @@ export class UsuarioService {
   ) {}
 
 
-  async findByUsuario(usuario: string): Promise<UsuarioEntity | null> {
+  async findByUsuario(usuarioname: string): Promise<UsuarioEntity | null> {
     return await this.usuarioRepository.findOne({
         where: {
-            usuario: usuario
+            usuario: usuarioname
         }
     })
-}
 
-
+  }
 
   async findAll(): Promise<UsuarioEntity[]> {
     return await this.usuarioRepository.find({

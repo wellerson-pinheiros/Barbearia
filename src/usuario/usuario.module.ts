@@ -13,7 +13,7 @@ import { AuthModule } from 'src/auth/auth.module';
 @Module({
   imports: [TypeOrmModule.forFeature([UsuarioEntity]),AgendamentoModule,
 forwardRef(()=> AuthModule)],
-  exports: [TypeOrmModule],
+  exports: [UsuarioService],
   providers: [UsuarioService,AgendamentoService],
   controllers: [UsuarioController],
 })
