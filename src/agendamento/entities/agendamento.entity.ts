@@ -8,7 +8,7 @@ export class AgendamentoEntity {
   @ApiProperty()
   id: number;
 
-  @Column({ nullable: false })
+  @Column({ type: 'timestamptz',nullable: false })
   @ApiProperty()
   dataHora: Date;
 

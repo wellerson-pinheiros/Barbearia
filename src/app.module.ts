@@ -14,7 +14,8 @@ import { AppController } from './app.controller';
       isGlobal: true, // Configurações do .env disponíveis globalmente
     }),
     TypeOrmModule.forRootAsync({
-      useClass: DevService, // Usa o serviço de configuração do banco
+      useClass: ProdService,
+      imports: [ConfigModule], // Usa o serviço de configuração do banco
     }),
     UsuarioModule,
     AgendamentoModule,
