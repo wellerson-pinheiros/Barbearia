@@ -6,6 +6,7 @@ import { AgendamentoModule } from './agendamento/agendamento.module';
 import { ProdService } from './data/services/prod.service';
 import { DevService } from './data/services/data.service';
 import { AuthModule } from './auth/auth.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { AuthModule } from './auth/auth.module';
     AgendamentoModule,
     AuthModule
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

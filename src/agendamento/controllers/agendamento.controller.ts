@@ -11,9 +11,16 @@ import {
   Body,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 
+
+@ApiTags('Agendamento')
+@UseGuards(JwtAuthGuard)
 @Controller('/agendamento')
+@ApiBearerAuth()
 export class AgendamentoController {
   constructor(private readonly agendamentoService: AgendamentoService) {}
 
